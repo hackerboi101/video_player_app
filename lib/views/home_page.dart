@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:video_player_app/controllers/video_controller.dart';
 import 'package:video_player_app/models/videos_model.dart';
+import 'package:video_player_app/views/video_player_page.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
@@ -42,7 +43,10 @@ class HomePage extends StatelessWidget {
                       final Results video = videoController.videosList[index];
 
                       return GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          videoController.findVideoDetails(video.title!);
+                          Get.to(VideoPlayerPage());
+                        },
                         child: Container(
                           margin: const EdgeInsets.only(bottom: 20.0),
                           color: Colors.white,

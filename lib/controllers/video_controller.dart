@@ -9,6 +9,7 @@ class VideoController extends GetxController {
   RxList<Results> videosList = <Results>[].obs;
   RxBool isLoading = false.obs;
   RxInt page = 1.obs;
+  final Rx<Results?> videoDetails = Rx<Results?>(null);
 
   final ScrollController scrollController = ScrollController();
 
@@ -56,5 +57,11 @@ class VideoController extends GetxController {
     final DateTime parsedDate = DateTime.parse(date);
     final DateFormat formatter = DateFormat.yMMMd();
     return formatter.format(parsedDate);
+  }
+
+  void findVideoDetails(String videoTitle) {
+    videoDetails.value = videosList.firstWhere(
+      (video) => video.title == videoTitle,
+    );
   }
 }
